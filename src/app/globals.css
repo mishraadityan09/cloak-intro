@@ -299,8 +299,8 @@ footer{border-top:1px solid var(--border);padding:34px 0;color:var(--faint);font
 
 /* ---- What: horizontal-scroll gallery (desktop) → vertical stack (mobile) ---- */
 #what{padding:0}
-.what-pin{height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;
-  padding:clamp(100px,13vh,150px) 0 clamp(36px,5vh,64px);gap:clamp(26px,4vh,48px)}
+.what-pin{height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(88px,11vh,128px) 0 clamp(36px,5vh,64px);gap:clamp(26px,4vh,48px)}
 .what-head{flex:0 0 auto;width:100%}
 .what-track{--cw:clamp(320px,40vw,560px);display:flex;flex-wrap:nowrap;width:max-content;
   align-items:stretch;gap:clamp(20px,2.6vw,44px);padding-inline:calc((100vw - var(--cw)) / 2)}

@@ -25,6 +25,13 @@ export function PhoneMock() {
             <span className="htitle">cloak</span>
             <span className="hsub">CONNECTED · ~/agent</span>
           </span>
+          <span className="spill">
+            <i className="spill-dot" />
+            <span className="spill-labs">
+              <span className="spill-lab spill-run">RUNNING</span>
+              <span className="spill-lab spill-done">DONE</span>
+            </span>
+          </span>
           <span className="grow" />
           <span className="tog">☀</span>
           <span className="tog">⌕</span>

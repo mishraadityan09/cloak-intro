@@ -28,7 +28,7 @@ const siteUrl =
 
 const title = "Cloak — a private remote for your coding agent";
 const description =
-  "Drive Claude Code from your phone over a direct, end-to-end-encrypted tunnel. No account, no cloud, self-hosted, free. npx cloak-remote.";
+  "See and take over every Claude Code session on your Mac from your phone — full terminal and chat, over a direct end-to-end-encrypted tunnel. No account, no cloud, self-hosted, free. npx cloak-remote.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   description,
   openGraph: {
     title,
-    description: "Drive Claude Code from your phone. Nothing leaves your machines. npx cloak-remote",
+    description: "See and take over every Claude Code session on your Mac from your phone. Nothing leaves your machines. npx cloak-remote",
     type: "website",
     siteName: "Cloak",
     url: "/",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title,
-    description: "Drive Claude Code from your phone. Nothing leaves your machines. npx cloak-remote",
+    description: "See and take over every Claude Code session on your Mac from your phone. Nothing leaves your machines. npx cloak-remote",
     // Image is supplied automatically by app/twitter-image.tsx
   },
 };

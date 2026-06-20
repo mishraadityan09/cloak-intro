@@ -187,16 +187,21 @@ function watchScene(content: HTMLElement) {
   const dlines = list(".dline", watch);
   const footer = list(".always, .tool-btns", watch);
   const allow = one(".tbtn.allow", watch);
+  const spill = one(".spill", watch);
+  const srun = one(".spill-run", watch);
+  const sdone = one(".spill-done", watch);
+  const sdot = one(".spill-dot", watch);
 
-  // Initial state: TERMINAL tab active, chat empty.
+  // Initial state: TERMINAL tab active, chat empty, status RUNNING.
   gsap.set([ubub, abub, tool].filter(Boolean) as Element[], { autoAlpha: 0 });
+  if (sdone) gsap.set(sdone, { autoAlpha: 0 });
   if (underline) gsap.set(underline, { left: "0%" });
   if (tabs[0]) gsap.set(tabs[0], { color: "var(--text)" });
   if (tabs[1]) gsap.set(tabs[1], { color: "var(--dim)" });
 
   const tl = gsap.timeline({
     defaults: { ease: "power2.out" },
-    scrollTrigger: { trigger: ".watch", start: "top top", end: "+=1800", pin: ".watch-pin", scrub: 1, anticipatePin: 1 },
+    scrollTrigger: { trigger: ".watch", start: "top top", end: "+=2000", pin: ".watch-pin", scrub: 1, anticipatePin: 1 },
   });
 
   // Beat 1 — switch TERMINAL → CHAT
@@ -227,6 +232,14 @@ function watchScene(content: HTMLElement) {
       { scale: 1.06, boxShadow: "0 0 22px color-mix(in srgb, var(--lime) 60%, transparent)", duration: 0.4, yoyo: true, repeat: 1, ease: "power2.inOut" },
       "+=0.3",
     );
+
+  // Beat 8 — the run resolves: the header status pill fills lime and flips RUNNING → DONE.
+  if (spill) {
+    tl.to(spill, { backgroundColor: "#c2f24a", borderColor: "#c2f24a", duration: 0.5, ease: "power2.inOut" }, "+=0.3");
+    if (srun) tl.to(srun, { autoAlpha: 0, duration: 0.3 }, "<");
+    if (sdone) tl.to(sdone, { autoAlpha: 1, duration: 0.3 }, "<0.1");
+    if (sdot) tl.to(sdot, { backgroundColor: "#0b0c09", duration: 0.4 }, "<");
+  }
 }
 
 // ===========================================================================================
