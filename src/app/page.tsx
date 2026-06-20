@@ -1,25 +1,12 @@
 import { SmoothScroll } from "./SmoothScroll";
 import { PhoneMock } from "./PhoneMock";
 import { ContactForm } from "./ContactForm";
-
-const nav = (
-  <nav>
-    <div className="wrap nav-in">
-      <div className="brand">CLO<span className="blk" />AK</div>
-      <div className="nav-links">
-        <a href="#how">How it works</a>
-        <a href="#what">What you get</a>
-        <a href="#security">Security</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <a className="nav-cta" href="#get">npx cloak-remote</a>
-    </div>
-  </nav>
-);
+import { Nav } from "./Nav";
+import { Footer } from "./Footer";
 
 export default function Home() {
   return (
-    <SmoothScroll nav={nav}>
+    <SmoothScroll nav={<Nav home />}>
       <header className="hero">
         <div className="wrap hero-grid">
           <div>
@@ -40,8 +27,9 @@ export default function Home() {
             </h1>
             <p className="sub">
               A private, self-hosted remote for your coding agent — full terminal <b>and</b> chat,
-              every edit gated with a diff, over a direct end-to-end-encrypted tunnel.{" "}
-              <b>No account. No cloud.</b>
+              every edit gated with a diff. See every Claude Code session on your Mac — even ones you
+              start in your own terminal — and take any over, all over a direct end-to-end-encrypted
+              tunnel. <b>No account. No cloud.</b>
             </p>
 
             <div className="term" id="get">
@@ -121,7 +109,7 @@ export default function Home() {
             <div className="step">
               <div className="n"><span className="num">03</span> / DRIVE</div>
               <h3>From anywhere</h3>
-              <p>Approve edits, run commands, watch responses stream — and get a push the moment a long task finishes.</p>
+              <p>Approve edits, run commands, watch responses stream — see every Claude session on your Mac, take any over, and get an on-device alert the moment one needs you or finishes.</p>
             </div>
           </div>
         </div>
@@ -144,6 +132,18 @@ export default function Home() {
             </div>
             <div className="panel">
               <div className="panel-card">
+                <h3><span className="blk" />Every session, live</h3>
+                <p>See every Claude Code session on your Mac — the ones in the app and the ones you start in your own terminal — each with live status: running, needs you, done.</p>
+              </div>
+            </div>
+            <div className="panel">
+              <div className="panel-card">
+                <h3><span className="blk" />Take over any session</h3>
+                <p>Pick up a session you left running on your laptop, right from your phone — open it as a chat with approvals, or a real <code>claude --resume</code> shell.</p>
+              </div>
+            </div>
+            <div className="panel">
+              <div className="panel-card">
                 <h3><span className="blk" />Approve every action</h3>
                 <p>Inline diffs, destructive-command flags, and “always allow” when you trust it. Nothing runs without your tap.</p>
               </div>
@@ -151,7 +151,7 @@ export default function Home() {
             <div className="panel">
               <div className="panel-card">
                 <h3><span className="blk" />Built for long runs</h3>
-                <p>Streaming responses, stop/interrupt, searchable transcripts, and a notification the second a task is done.</p>
+                <p>Streaming responses, stop/interrupt, searchable transcripts, and an on-device alert the second a task needs you or finishes.</p>
               </div>
             </div>
             <div className="panel">
@@ -178,7 +178,7 @@ export default function Home() {
           <div className="vs">
             <div><b>vs vendor remotes</b>No account on your phone, no cloud sync bridge — your P2P tunnel, your keys.</div>
             <div><b>vs cloud agents</b>Privacy-first, open, and self-hostable. Your prompts and code never touch a third party.</div>
-            <div><b>vs SSH apps</b>A shell <span className="lime">plus</span> agent chat with tool-approval, diffs, and notifications — built for agent workflows.</div>
+            <div><b>vs SSH apps</b>A shell <span className="lime">plus</span> agent chat with tool-approval and diffs, and a live view of every Claude session on your Mac you can take over — built for agent workflows.</div>
           </div>
         </div>
       </section>
@@ -276,18 +276,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer>
-        <div className="wrap foot-in">
-          <div className="brand" style={{ fontSize: 14 }}>CLO<span className="blk" style={{ width: 8, height: 8 }} />AK</div>
-          <div>A private remote for your coding agent · Works with Claude Code today</div>
-          <div className="foot-meta">
-            <a href="#contact">Contact</a>
-            <a href="https://github.com/mishraadityan09" target="_blank" rel="noreferrer noopener">GitHub</a>
-            <a href="https://www.linkedin.com/in/adityan-mishra-61ba18162/" target="_blank" rel="noreferrer noopener">LinkedIn</a>
-            <span>© 2026</span>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </SmoothScroll>
   );
 }
