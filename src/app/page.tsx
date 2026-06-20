@@ -1,5 +1,6 @@
 import { SmoothScroll } from "./SmoothScroll";
 import { PhoneMock } from "./PhoneMock";
+import { ContactForm } from "./ContactForm";
 
 const nav = (
   <nav>
@@ -9,6 +10,7 @@ const nav = (
         <a href="#how">How it works</a>
         <a href="#what">What you get</a>
         <a href="#security">Security</a>
+        <a href="#contact">Contact</a>
       </div>
       <a className="nav-cta" href="#get">npx cloak-remote</a>
     </div>
@@ -219,6 +221,22 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="wrap"><div className="rule" /></div>
+
+      <section id="contact">
+        <div className="wrap reveal contact">
+          <div className="contact-copy">
+            <div className="sec-eyebrow"><span className="blk" /><span className="eyebrow">Contact</span></div>
+            <h2 className="lead">Questions, or want early access?</h2>
+            <p className="lead-sub">
+              Tell us what you&apos;re building and how you&apos;d use Cloak. We read every message and
+              reply from a real person — no autoresponders.
+            </p>
+          </div>
+          <ContactForm />
+        </div>
+      </section>
+
       <section className="cta">
         <div className="wrap reveal">
           <div className="wordmark" aria-label="Cloak">CLO<span className="blk" />AK</div>
@@ -250,7 +268,7 @@ export default function Home() {
         <div className="wrap foot-in">
           <div className="brand" style={{ fontSize: 14 }}>CLO<span className="blk" style={{ width: 8, height: 8 }} />AK</div>
           <div>A private remote for your coding agent · Works with Claude Code today</div>
-          <div>© 2026</div>
+          <div className="foot-meta"><a href="#contact">Contact</a><span>© 2026</span></div>
         </div>
       </footer>
     </SmoothScroll>
