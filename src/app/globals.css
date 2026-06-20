@@ -147,6 +147,35 @@ h1{font-family:var(--sans);font-weight:600;font-size:clamp(26px,3.4vw,38px);line
 .send{width:34px;height:34px;flex:none;border-radius:7px;background:var(--lime);color:var(--lime-ink);
   display:flex;align-items:center;justify-content:center;font-size:15px}
 
+/* the chat region — a positioning context so the "take over" screen can overlay it on scroll */
+.chatzone{flex:1;min-height:0;display:flex;flex-direction:column;position:relative}
+/* "Take over any session" screen — the sessions overview + a resume bottom sheet, drawn inside the phone */
+.takeover{position:absolute;inset:0;z-index:3;background:var(--bg);opacity:0;display:flex;flex-direction:column}
+.to-head{font-family:var(--mono);font-size:8.5px;letter-spacing:.18em;color:var(--dim);padding:11px 13px 8px;border-bottom:1px solid var(--border);background:var(--surface)}
+.to-list{flex:1;min-height:0;padding:11px 11px 0;display:flex;flex-direction:column;gap:7px;overflow:hidden}
+.to-group{font-family:var(--mono);font-size:8px;letter-spacing:.16em;color:var(--lime);margin:2px 2px 1px}
+.to-row{display:flex;align-items:center;gap:9px;padding:9px 10px;border:1px solid var(--border);border-radius:8px;background:var(--surface-alt)}
+.to-ico{width:9px;height:9px;flex:none;border:1px solid var(--lime);border-radius:2px}
+.to-text{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.to-name{font-family:var(--mono);font-weight:600;font-size:11.5px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.to-sub{font-family:var(--mono);font-size:8.5px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.to-pill{display:inline-flex;align-items:center;gap:4px;flex:none;padding:2px 7px;border-radius:999px;font-family:var(--mono);font-size:7.5px;letter-spacing:.12em;
+  color:var(--lime);border:1px solid color-mix(in srgb,var(--lime) 45%,transparent);background:color-mix(in srgb,var(--lime) 12%,transparent)}
+.to-dot{width:4px;height:4px;border-radius:50%;background:var(--lime);flex:none}
+.to-pill.idle{color:var(--dim);border-color:var(--border-strong);background:transparent}
+.to-pill.idle .to-dot{background:var(--dim)}
+.to-sheet{position:absolute;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--border-strong);border-radius:14px 14px 0 0;
+  padding:9px 12px 14px;display:flex;flex-direction:column;gap:6px;box-shadow:0 -20px 44px -26px rgba(0,0,0,.95)}
+.to-grip{align-self:center;width:30px;height:4px;border-radius:2px;background:var(--border-strong);margin-bottom:3px}
+.to-stitle{font-family:var(--mono);font-weight:600;font-size:10.5px;color:var(--text);margin:0 2px 3px}
+.to-action{display:flex;align-items:center;gap:10px;padding:9px 10px;border:1px solid var(--border);border-radius:8px}
+.to-aico{width:10px;height:10px;flex:none;border:1px solid var(--dim);border-radius:2px}
+.to-alabel{flex:1;font-family:var(--sans);font-size:11.5px;color:var(--text)}
+.to-chev{font-family:var(--mono);font-size:13px;color:var(--dim)}
+.to-action.hot{border-color:var(--lime);background:color-mix(in srgb,var(--lime) 9%,transparent)}
+.to-action.hot .to-aico{background:var(--lime);border-color:var(--lime)}
+.to-action.hot .to-alabel{color:var(--lime)}
+
 section{padding:78px 0;position:relative}
 .rule{height:1px;background:linear-gradient(90deg,transparent,var(--border) 12%,var(--border) 88%,transparent)}
 .sec-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:26px}

@@ -191,17 +191,26 @@ function watchScene(content: HTMLElement) {
   const srun = one(".spill-run", watch);
   const sdone = one(".spill-done", watch);
   const sdot = one(".spill-dot", watch);
+  const take = one(".takeover", watch);
+  const toHead = list(".to-head, .to-group", watch);
+  const toRows = list(".to-row", watch);
+  const toSheet = one(".to-sheet", watch);
+  const toHot = one(".to-action.hot", watch);
 
-  // Initial state: TERMINAL tab active, chat empty, status RUNNING.
+  // Initial state: TERMINAL tab active, chat empty, status RUNNING, take-over screen hidden.
   gsap.set([ubub, abub, tool].filter(Boolean) as Element[], { autoAlpha: 0 });
   if (sdone) gsap.set(sdone, { autoAlpha: 0 });
+  if (take) gsap.set(take, { autoAlpha: 0 });
+  if (toSheet) gsap.set(toSheet, { yPercent: 100 });
+  if (toRows.length) gsap.set(toRows, { y: 12, autoAlpha: 0 });
+  if (toHead.length) gsap.set(toHead, { autoAlpha: 0 });
   if (underline) gsap.set(underline, { left: "0%" });
   if (tabs[0]) gsap.set(tabs[0], { color: "var(--text)" });
   if (tabs[1]) gsap.set(tabs[1], { color: "var(--dim)" });
 
   const tl = gsap.timeline({
     defaults: { ease: "power2.out" },
-    scrollTrigger: { trigger: ".watch", start: "top top", end: "+=2000", pin: ".watch-pin", scrub: 1, anticipatePin: 1 },
+    scrollTrigger: { trigger: ".watch", start: "top top", end: "+=3400", pin: ".watch-pin", scrub: 1, anticipatePin: 1 },
   });
 
   // Beat 1 — switch TERMINAL → CHAT
@@ -240,6 +249,26 @@ function watchScene(content: HTMLElement) {
     if (sdone) tl.to(sdone, { autoAlpha: 1, duration: 0.3 }, "<0.1");
     if (sdot) tl.to(sdot, { backgroundColor: "#0b0c09", duration: 0.4 }, "<");
   }
+
+  // ---- Act 2: take over any session ----
+  // Beat 9 — the phone switches to the "sessions on this laptop" screen; rows stagger in.
+  if (take) tl.to(take, { autoAlpha: 1, duration: 0.6, ease: "power2.out" }, "+=0.4");
+  if (toHead.length) tl.to(toHead, { autoAlpha: 1, duration: 0.4 }, "<0.1");
+  if (toRows.length) tl.to(toRows, { y: 0, autoAlpha: 1, stagger: 0.5, duration: 0.6, ease: "power3.out" }, "<0.1");
+
+  // Beat 10 — the live native session highlights (you pick it).
+  if (toRows[0]) tl.to(toRows[0], { borderColor: "#c2f24a", backgroundColor: "rgba(194,242,74,0.08)", duration: 0.4 }, "+=0.3");
+
+  // Beat 11 — the take-over bottom sheet rises.
+  if (toSheet) tl.to(toSheet, { yPercent: 0, duration: 0.8, ease: "expo.out" }, "+=0.2");
+
+  // Beat 12 — "Resume in terminal" pulses with the lime bloom (same motif as ALLOW).
+  if (toHot)
+    tl.to(
+      toHot,
+      { scale: 1.04, boxShadow: "0 0 20px color-mix(in srgb, var(--lime) 55%, transparent)", duration: 0.4, yoyo: true, repeat: 1, ease: "power2.inOut" },
+      "+=0.35",
+    );
 }
 
 // ===========================================================================================
