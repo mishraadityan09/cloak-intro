@@ -1,10 +1,38 @@
+import fs from "node:fs";
+import path from "node:path";
 import { SmoothScroll } from "./SmoothScroll";
 import { PhoneMock } from "./PhoneMock";
 import { ContactForm } from "./ContactForm";
 import { Nav } from "./Nav";
 import { Footer } from "./Footer";
 
+type Demo = { src: string; label: string };
+
+// Read the demo clips from /public/demos at build time — drop a video in that
+// folder and a phone appears for it automatically. A leading number (e.g.
+// "1-pairing.mp4") sets the order and is stripped from the displayed caption.
+function getDemos(): Demo[] {
+  const dir = path.join(process.cwd(), "public", "demos");
+  let files: string[];
+  try {
+    files = fs.readdirSync(dir).filter((f) => /\.(mp4|webm|mov|m4v)$/i.test(f));
+  } catch {
+    return [];
+  }
+  return files.sort().map((file) => ({
+    src: `/demos/${file}`,
+    label:
+      file
+        .replace(/\.[^.]+$/, "")
+        .replace(/^\d+[-_\s]*/, "")
+        .replace(/[-_]+/g, " ")
+        .trim()
+        .replace(/\b\w/g, (c) => c.toUpperCase()) || "Demo",
+  }));
+}
+
 export default function Home() {
+  const demos = getDemos();
   return (
     <SmoothScroll nav={<Nav home />}>
       <header className="hero">
@@ -210,14 +238,23 @@ export default function Home() {
         <div className="wrap reveal">
           <div className="sec-eyebrow"><span className="blk" /><span className="eyebrow">See it run</span></div>
           <h2 className="lead">90 seconds, two devices, zero servers.</h2>
-          <div className="demo-wrap">
-            <div className="demo-phone">
-              <div className="demo-screen">
-                {/* Portrait demo recording (720×1600). #t=0.1 shows the first frame as a poster. */}
-                <video src="/demo.mp4#t=0.1" controls playsInline preload="metadata" />
+          {demos.length > 0 && (
+            <div className="demo-wrap">
+              {/* One phone per clip in /public/demos. #t=0.1 shows the first frame as a poster. */}
+              <div className="demo-grid">
+                {demos.map((d) => (
+                  <figure className="demo-item" key={d.src}>
+                    <div className="demo-phone">
+                      <div className="demo-screen">
+                        <video src={`${d.src}#t=0.1`} controls playsInline preload="metadata" />
+                      </div>
+                    </div>
+                    {demos.length > 1 && <figcaption className="demo-cap">{d.label}</figcaption>}
+                  </figure>
+                ))}
               </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
 

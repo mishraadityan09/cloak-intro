@@ -393,10 +393,12 @@ function securityScene(content: HTMLElement) {
 // SCENE I — Demo phone scale-in + play-button pulse
 // ===========================================================================================
 function demoScene(content: HTMLElement) {
-  const demo = one(".demo-phone", content);
-  if (!demo) return;
-  gsap.set(demo, { y: 40, scale: 0.92, autoAlpha: 0 });
-  onEnter(one(".demo-wrap", content) ?? demo, "top 82%", () => gsap.to(demo, { y: 0, scale: 1, autoAlpha: 1, duration: 1, ease: "expo.out" }));
+  const items = list(".demo-item", content);
+  if (!items.length) return;
+  gsap.set(items, { y: 40, scale: 0.94, autoAlpha: 0 });
+  onEnter(one(".demo-wrap", content) ?? items[0], "top 82%", () =>
+    gsap.to(items, { y: 0, scale: 1, autoAlpha: 1, duration: 0.9, stagger: 0.12, ease: "expo.out" }),
+  );
   const play = one(".play", content);
   if (play) {
     const pulse = gsap.to(play, {

@@ -212,8 +212,12 @@ section{padding:78px 0;position:relative}
 .chain span b{color:var(--lime);font-weight:500}
 
 /* portrait (mobile screen-recording) demo — shown inside a phone frame */
-.demo-wrap{display:flex;justify-content:center;margin-top:34px}
-.demo-phone{width:min(320px,82vw);border:2px solid var(--border-strong);border-radius:40px;padding:10px;
+.demo-wrap{margin-top:34px}
+/* one phone per clip — wraps to a grid as more demos are added */
+.demo-grid{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:clamp(22px,3vw,40px)}
+.demo-item{display:flex;flex-direction:column;align-items:center;gap:14px}
+.demo-cap{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--dim);text-align:center;max-width:22ch}
+.demo-phone{width:clamp(230px,24vw,300px);border:2px solid var(--border-strong);border-radius:40px;padding:10px;
   background:#0a0b08;box-shadow:0 40px 90px -40px rgba(0,0,0,.95)}
 .demo-screen{position:relative;aspect-ratio:9/19.5;border-radius:30px;overflow:hidden;
   background:radial-gradient(80% 120% at 50% 0%,#15170f,#0a0b08);
@@ -314,7 +318,7 @@ footer{border-top:1px solid var(--border);padding:34px 0;color:var(--faint);font
   transform:scaleX(0);transform-origin:0 50%;z-index:21;opacity:.9;pointer-events:none}
 
 /* Will-change hints for the heaviest animated elements. */
-.phone-stage,.hero .term,.chain span,.demo-phone,.cta .wordmark,.what-track{will-change:transform,opacity}
+.phone-stage,.hero .term,.chain span,.demo-item,.cta .wordmark,.what-track{will-change:transform,opacity}
 
 /* ---- "Watch it work" pinned scene ---- */
 .watch{position:relative;padding:0}
