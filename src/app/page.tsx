@@ -272,7 +272,10 @@ export default function Home() {
               <button className="copy" aria-label="Copy command">COPY</button>
             </div>
           </div>
-          <div className="badge">Host live on npm · <b>mobile app coming soon</b></div>
+          <div className="badge">
+            <a href="https://www.npmjs.com/package/cloak-remote" target="_blank" rel="noreferrer noopener">Host live on npm ↗</a>
+            {" · "}<b>mobile app coming soon</b>
+          </div>
         </div>
       </section>
 
