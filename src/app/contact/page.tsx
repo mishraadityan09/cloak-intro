@@ -47,6 +47,9 @@ export default function ContactPage() {
               <div className="contact-detail">
                 <span className="contact-label">Elsewhere</span>
                 <div className="contact-socials">
+                  <a href="https://www.npmjs.com/package/cloak-remote" target="_blank" rel="noreferrer noopener">
+                    <span className="blk" />npm
+                  </a>
                   <a href="https://github.com/mishraadityan09" target="_blank" rel="noreferrer noopener">
                     <span className="blk" />GitHub
                   </a>
