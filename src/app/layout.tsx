@@ -18,15 +18,35 @@ const sans = IBM_Plex_Sans({
   weight: ["400", "500", "600"],
 });
 
+// Absolute base for resolving OG/Twitter image URLs. Auto-detects the Vercel
+// production domain; override with NEXT_PUBLIC_SITE_URL for a custom domain.
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:3000");
+
+const title = "Cloak — a private remote for your coding agent";
+const description =
+  "Drive Claude Code from your phone over a direct, end-to-end-encrypted tunnel. No account, no cloud, self-hosted, free. npx cloak-remote.";
+
 export const metadata: Metadata = {
-  title: "Cloak — a private remote for your coding agent",
-  description:
-    "Drive Claude Code from your phone over a direct, end-to-end-encrypted tunnel. No account, no cloud, self-hosted, free. npx cloak-remote.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
   openGraph: {
-    title: "Cloak — a private remote for your coding agent",
-    description:
-      "Drive Claude Code from your phone. Nothing leaves your machines. npx cloak-remote",
+    title,
+    description: "Drive Claude Code from your phone. Nothing leaves your machines. npx cloak-remote",
     type: "website",
+    siteName: "Cloak",
+    url: "/",
+    // Image is supplied automatically by app/opengraph-image.tsx
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description: "Drive Claude Code from your phone. Nothing leaves your machines. npx cloak-remote",
+    // Image is supplied automatically by app/twitter-image.tsx
   },
 };
 
