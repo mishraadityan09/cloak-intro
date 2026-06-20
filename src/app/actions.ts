@@ -1,11 +1,17 @@
 "use server";
 // Contact-form Server Action. Invoked from the ContactForm Client Component via
 // useActionState. Validates input server-side, then delivers the message with Resend.
-// All addresses/keys come from env (.env.local) — see CONTACT_TO / CONTACT_FROM / RESEND_API_KEY.
+// Only the secret RESEND_API_KEY comes from env; the addresses are fixed below.
 import { Resend } from "resend";
 import type { ContactState } from "./contact-types";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Where contact-form submissions are delivered.
+const TO_ADDRESS = "adityanmishra36@gmail.com";
+// Sender. Until a domain is verified in Resend, only "onboarding@resend.dev"
+// works and it can deliver ONLY to the Resend account's own email (TO_ADDRESS above).
+const FROM_ADDRESS = "Cloak Contact <onboarding@resend.dev>";
 
 export async function sendContact(
   _prev: ContactState,
@@ -33,11 +39,8 @@ export async function sendContact(
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO;
-  const from = process.env.CONTACT_FROM ?? "Cloak Contact <onboarding@resend.dev>";
-
-  if (!apiKey || !to) {
-    console.error("Contact form misconfigured: RESEND_API_KEY and CONTACT_TO must be set.");
+  if (!apiKey) {
+    console.error("Contact form misconfigured: RESEND_API_KEY must be set.");
     return {
       ok: false,
       message: "Contact is temporarily unavailable. Please try again later.",
@@ -48,8 +51,8 @@ export async function sendContact(
   try {
     const resend = new Resend(apiKey);
     const { error } = await resend.emails.send({
-      from,
-      to,
+      from: FROM_ADDRESS,
+      to: TO_ADDRESS,
       replyTo: `${name} <${email}>`,
       subject: `Cloak contact — ${name}`,
       text: `From: ${name} <${email}>\n\n${message}`,
