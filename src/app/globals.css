@@ -328,6 +328,26 @@ footer{border-top:1px solid var(--border);padding:34px 0;color:var(--faint);font
 .faq-item code{font-family:var(--mono);font-size:13px;color:var(--lime);
   background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:1px 6px}
 
+/* ---- Legal / prose pages (e.g. /privacy) ---- */
+.legal{max-width:74ch}
+.legal .lead-sub{margin-bottom:0}
+.legal-updated{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--dim);margin-top:14px}
+.legal-body{margin-top:40px;border-top:1px solid var(--border);padding-top:8px}
+.legal-body section{padding:28px 0;border-bottom:1px solid var(--border)}
+.legal-body section:last-child{border-bottom:0}
+.legal-body h2{font-family:var(--sans);font-weight:600;font-size:19px;line-height:1.3;
+  margin:0 0 14px;color:var(--text)}
+.legal-body p{color:var(--dim);font-size:15px;line-height:1.7;margin:0 0 12px;max-width:70ch}
+.legal-body p:last-child{margin-bottom:0}
+.legal-body ul{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+.legal-body li{display:flex;gap:12px;color:var(--dim);font-size:15px;line-height:1.6;max-width:68ch}
+.legal-body li .blk{width:7px;height:7px;flex:none;margin-top:7px}
+.legal-body a{color:var(--lime)}
+.legal-body a:hover{text-decoration:underline}
+.legal-body code{font-family:var(--mono);font-size:13px;color:var(--lime);
+  background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:1px 6px}
+.legal-body strong{color:var(--text);font-weight:600}
+
 /* ===== GSAP scroll layer ===== */
 /* Content is fully visible by default (SEO / no-JS / reduced-motion). GSAP hides only the
    specific elements it animates, per-element, inside the layout-effect — so no FOUC. */
